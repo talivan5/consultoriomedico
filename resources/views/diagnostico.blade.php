@@ -3,7 +3,7 @@
     <div class="container">
         <div style="text-align: center;">
             <h1>
-                Registro de Diagnostico
+                Registro de Diagnosticos
             </h1>
         </div>
 
