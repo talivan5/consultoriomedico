@@ -11,6 +11,17 @@
 |
 */
 
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Route;
+
 Route::get('/', function () {
     return view('welcome');
 });
+
+Auth ::routes();
+
+Route::get('/home', 'HomeController@index')->name('home');
+
+Route::get('/paciente','PacienteController@index')->name('paciente');
+Route::get('/diagnostico','DiagnosticoController@index')->name('diagnostico');
+//Route::resource('diagnostico', 'DiagnosticoController');
