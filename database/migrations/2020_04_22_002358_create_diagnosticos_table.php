@@ -18,9 +18,10 @@ class CreateDiagnosticosTable extends Migration
             $table->string('nombre');
             $table->string('apellidos');
             $table->string('ci');
-            $table->dateTime('fecha_consulta');
+            $table->date('fecha_consulta',("d-m-Y"));
             $table->string('enfermedad');
             $table->string('descripcion_patologia');
+            $table->boolean('condicion');
             $table->timestamps();
         });
     }

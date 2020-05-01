@@ -13,6 +13,7 @@ class Diagnostico extends Model
         'ci',
         'fecha_consulta',
         'enfermedad',
-        'descripcion_patologia'
+        'descripcion_patologia',
+        'condicion'
     ];
 }

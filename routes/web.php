@@ -23,5 +23,11 @@ Auth ::routes();
 Route::get('/home', 'HomeController@index')->name('home');
 
 Route::get('/paciente','PacienteController@index')->name('paciente');
-//Route::get('/diagnostico','DiagnosticoController@index')->name('diagnostico');
-Route::resource('diagnostico', 'DiagnosticoController');
+
+Route::get('/diagnostico','DiagnosticoController@index');
+Route::post('/diagnostico','DiagnosticoController@store')->name('diagnostico.store');
+//Route::get('/diagnostico', 'DiagnosticoController@create')->name('diagnostico.create');
+Route::get('/diagnostico/{id}', 'DiagnosticoController@show');
+Route::delete('/diagnostico/{id}', 'DiagnosticoController@destroy')->name('diagnostico.destroy');
+Route::put('/diagnostico/{id}', 'DiagnosticoController@update')->name('diagnostico.update');
+//Route::get('/diagnostico/{id}/edit', 'DiagnosticoController@edit')->name('diagnostico.edit');

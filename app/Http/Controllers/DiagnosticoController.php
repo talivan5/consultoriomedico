@@ -9,10 +9,15 @@ class DiagnosticoController extends Controller
 {
     public function index()
     {
-        $diagnosticos = Diagnostico::all();
-        return view('diagnostico',compact('diagnosticos'));
-    }
 
+        $diagnostico = Diagnostico::all();
+        return view('diagnostico.index',compact('diagnostico'));
+
+    }
+    public function create()
+    {
+    	return view('diagnostico.index');
+    }
     public function store(Request $request)
     {
         $diagnostico                            = new Diagnostico();
@@ -22,18 +27,24 @@ class DiagnosticoController extends Controller
         $diagnostico->fecha_consulta            = $request->fecha_consulta;
         $diagnostico->enfermedad                = $request->enfermedad;
         $diagnostico->descripcion_patologia     = $request->descripcion_patologia;
+        $diagnostico->condicion = '1';
 
         $diagnostico->save();
 
+        return redirect('diagnostico')->with('status','Se guardo Correctamente');
+    }
+
+    public function show(Diagnostico $diagnostico)
+    {
+        $diagnostico = Diagnostico::findOrFail($diagnostico);
         return view('diagnostico',compact('diagnostico'));
     }
 
-    public function show($id)
+    public function edit($id)
     {
         $diagnostico = Diagnostico::findOrFail($id);
-        return view('diagnostico',compact('diagnostico'));
+        return view('diagnostico.editar',compact('diagnostico'));
     }
-
     public function update(Request $request, $id)
     {
         $diagnostico                            = Diagnostico::findOrFail($id);
@@ -44,9 +55,8 @@ class DiagnosticoController extends Controller
         $diagnostico->enfermedad                = $request->enfermedad;
         $diagnostico->descripcion_patologia     = $request->descripcion_patologia;
 
-        $diagnostico->save();
-
-        return view('diagnostico',compact('diagnostico'));
+        $diagnostico->update();
+        return view('diagnostico.index',compact('diagnostico'));
     }
 
     public function destroy($id)
@@ -54,6 +64,6 @@ class DiagnosticoController extends Controller
         $diagnostico = Diagnostico::findOrFail($id);
         $diagnostico->delete();
 
-        return view('diagnostico',compact('diagnostico'));
+        return redirect('diagnostico')->with('status','Se Elimino Correctamente');
     }
 }
